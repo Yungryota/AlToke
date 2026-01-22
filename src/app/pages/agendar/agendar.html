@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="head">
+    <h2>Agendar</h2>
+
+    <div class="date">
+      <label>Fecha</label>
+      <input type="date" [value]="date()" (change)="setDate($event)" />
+    </div>
+  </div>
+
+  <div class="grid" *ngIf="slots().length; else empty">
+    <button
+      type="button"
+      class="slot"
+      *ngFor="let s of slots()"
+      [disabled]="s.busy"
+      [class.busy]="s.busy"
+      [class.sel]="isSelected(s)"
+      (click)="pick(s)"
+    >
+      <span class="t">{{ s.start }}</span>
+      <span class="sep">→</span>
+      <span class="t">{{ s.end }}</span>
+    </button>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty">Sin horarios</div>
+  </ng-template>
+
+  <div class="summary">
+    {{ summary() }}
+  </div>
+
+  <div class="actions">
+    <button class="confirm" [disabled]="!selected()" (click)="confirm()">
+      Confirmar
+    </button>
+  </div>
+
+  <div class="ok" *ngIf="msg()">
+    {{ msg() }}
+  </div>
+</div>
