@@ -1,1 +1,56 @@
-<p>register works!</p>
+<div class="page">
+  <div class="card">
+    <h1>Crear cuenta</h1>
+
+    <form (ngSubmit)="Register()">
+        <label>Correo</label>
+        <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="correo@ejemplo.com"
+            required
+        />
+
+        <label>Contraseña</label>
+        <input
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="••••••••"
+            required
+        />
+
+        <label>Confirmar contraseña</label>
+        <input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            placeholder="••••••••"
+            required
+        />
+
+        <label>Tipo de cuenta</label>
+        <select
+        [(ngModel)]="role"
+        name="role"
+        required
+        >
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="usuario">Usuario</option>
+        <option value="empresa">Empresa</option>
+        </select>
+
+      <p *ngIf="error" class="error">{{ error }}</p>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creando...' : 'Registrarse' }}
+      </button>
+    </form>
+
+    <p class="link">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Inicia sesión</a>
+    </p>
+  </div>
+</div>

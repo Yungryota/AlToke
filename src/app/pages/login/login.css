@@ -79,5 +79,6 @@ button:disabled {
 
 .link a {
   color: #555;
-  text-decorat
+  text-decorat: underline;
+  cursor: pointer;
 }

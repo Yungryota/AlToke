@@ -1,16 +1,18 @@
-import { Component } from '@angular/core'
-import { FormsModule } from '@angular/forms'
-import { Router } from '@angular/router'
-import { SupabaseService } from '../../core/supabase/supabase.service'
-import { NgIf } from '@angular/common'
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupabaseService } from '../../core/supabase/supabase.service';
+import { NgIf } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, NgIf],
+  imports: [RouterModule, FormsModule, NgIf],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
 export class Login {
   email = ''
   password = ''
