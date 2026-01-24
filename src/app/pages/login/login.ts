@@ -33,7 +33,9 @@ export class Login {
 
     if(error){
       this.error = error.message
-    }else{
+    }
+    else
+    {
       alert('Login exitoso')
       this.router.navigate(['/agendar'])
     }

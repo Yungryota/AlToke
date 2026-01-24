@@ -1,0 +1,83 @@
+/* Fondo general */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+}
+
+/* Tarjeta principal */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px #eaeaea;
+}
+
+/* Título */
+h1 {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+input {
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+/* Botón */
+button {
+  margin-top: 1.5rem;
+  align-self: flex-end;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  border: none;
+  background: #888;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+/* Error */
+.error {
+  color: #c0392b;
+  font-size: 0.85rem;
+}
+
+/* Link inferior */
+.link {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.link a {
+  color: #555;
+  text-decorat
+}
