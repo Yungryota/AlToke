@@ -1,60 +1,73 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SupabaseService } from '../../core/supabase/supabase.service';
 import { NgIf } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [RouterModule, FormsModule, NgIf],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
+  nombre = '';
   email = '';
   password = '';
   confirmPassword = '';
-  error = '';
   role: 'usuario' | 'empresa' | '' = '';
+  error = '';
   loading = false;
 
-  constructor(private supabaseService: SupabaseService) {}
-    async Register() {
-      this.error = '';
+  constructor(
+    private supabaseService: SupabaseService,
+    private router: Router
+  ) {}
 
-      if (!this.role) {
-        this.error = 'Selecciona un tipo de cuenta';
-        return;
-      }
+  async Register() {
+  this.error = '';
+  this.loading = true;
 
-      if (this.password !== this.confirmPassword) {
-        this.error = 'Las contraseñas no coinciden';
-        return;
-      }
-
-      this.loading = true;
-
-      const { data, error } = await this.supabaseService
-        .supabase()
-        .auth
-        .signUp({
-          email: this.email,
-          password: this.password,
-          options: {
-            data: {
-              role: this.role
-            }
-          }
-        });
-
-      this.loading = false;
-
-      if (error) {
-        this.error = error.message;
-      } else {
-        alert('Cuenta creada correctamente');
-      }
+  try {
+    if (!this.nombre.trim()) {
+      throw new Error('El nombre es obligatorio');
     }
+
+    if (!this.role) {
+      throw new Error('Selecciona un tipo de cuenta');
+    }
+
+    if (this.password !== this.confirmPassword) {
+      throw new Error('Las contraseñas no coinciden');
+    }
+
+    const { error } = await this.supabaseService
+      .supabase()
+      .auth
+      .signUp({
+        email: this.email,
+        password: this.password,
+        options: {
+          data: {
+            name: this.nombre,
+            role: this.role,
+          },
+        },
+      });
+
+    if (error) {
+      throw error;
+    }
+
+    alert('Cuenta creada. Revisa tu correo para confirmar.');
+    this.router.navigate(['/login']);
+
+  } catch (err: any) {
+    this.error = err.message || 'Error inesperado';
+  } finally {
+    this.loading = false;
+  }
+}
 
 }

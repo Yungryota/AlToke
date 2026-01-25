@@ -1,8 +1,15 @@
 <div class="page">
   <div class="card">
     <h1>Crear cuenta</h1>
-
     <form (ngSubmit)="Register()">
+        <label>Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          required
+        />
         <label>Correo</label>
         <input
             type="email"
@@ -32,13 +39,13 @@
 
         <label>Tipo de cuenta</label>
         <select
-        [(ngModel)]="role"
-        name="role"
-        required
+          [(ngModel)]="role"
+          name="role"
+          required
         >
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="usuario">Usuario</option>
-        <option value="empresa">Empresa</option>
+          <option value="" disabled>Selecciona una opción</option>
+          <option value="usuario">Usuario</option>
+          <option value="empresa">Empresa</option>
         </select>
 
       <p *ngIf="error" class="error">{{ error }}</p>
