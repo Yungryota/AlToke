@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/agendar">Agendar</a>
+    <a routerLink="/usuario">Usuario</a>
+    <a routerLink="/empresa">Empresa</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="logout-btn" (click)="AbrirModal()">
+      Cerrar sesión
+    </button>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div class="modal-backdrop" *ngIf="mostrarModal">
+  <div class="modal">
+    <h3>¿Cerrar sesión?</h3>
+    <p>¿Estás seguro de que quieres cerrar sesión?</p>
+
+    <div class="modal-actions">
+      <button class="cancel" (click)="CerrarModal()">
+        Cancelar
+      </button>
+      <button class="confirm" (click)="Logout()">
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+</div>
