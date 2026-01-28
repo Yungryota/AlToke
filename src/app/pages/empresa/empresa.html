@@ -1,5 +1,100 @@
-<div>
-    <h1>Empresa Component</h1>
-<!-- <app-usuario></app-usuario> 
+<div class="empresa-container">
+    <h1>Configuración de Empresa</h1>
+    
+    <!-- Info del usuario - siempre visible -->
+    <div class="user-info">
+        <p *ngIf="usuarioNombre"><strong>👤 Usuario:</strong> {{ usuarioNombre }}</p>
+        <p *ngIf="usuarioEmail"><strong>📧 Email:</strong> {{ usuarioEmail }}</p>
+        <p *ngIf="!usuarioNombre && !usuarioEmail && !loading">⏳ Cargando información del usuario...</p>
+    </div>
+
+    <!-- Mensaje de estado -->
+    <div class="mensaje" *ngIf="mensaje && !loading" [class.error]="mensaje.includes('❌')">
+        {{ mensaje }}
+    </div>
+    
+    <div class="horarios-form">
+        <h2>Horarios de Atención por Día</h2>
+        <p class="subtitle">Configure los horarios de atención para cada día de la semana</p>
+        
+        <!-- Loading spinner -->
+        <div class="loading" *ngIf="loading">
+            <p>⏳ Cargando configuración...</p>
+        </div>
+
+        <div class="dias-container" *ngIf="!loading">
+            <div *ngFor="let dia of horarios" class="dia-card" [class.inactivo]="!dia.activo">
+                <div class="dia-header">
+                    <div class="dia-titulo">
+                        <input 
+                            type="checkbox" 
+                            [(ngModel)]="dia.activo"
+                            [id]="'activo-' + dia.dia_semana"
+                            class="checkbox-activo"
+                        >
+                        <label [for]="'activo-' + dia.dia_semana" class="dia-nombre">
+                            {{ dia.nombre }}
+                        </label>
+                    </div>
+                    <button 
+                        *ngIf="dia.activo" 
+                        (click)="copiarATodos(dia)" 
+                        class="btn-copiar"
+                        title="Copiar a todos los días activos"
+                    >
+                        📋 Copiar
+                    </button>
+                </div>
+
+                <div class="dia-content" *ngIf="dia.activo">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Inicio:</label>
+                            <input 
+                                type="time" 
+                                [(ngModel)]="dia.hora_inicio"
+                                class="time-input-small"
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label>Cierre:</label>
+                            <input 
+                                type="time" 
+                                [(ngModel)]="dia.hora_cierre"
+                                class="time-input-small"
+                            >
+                        </div>
+
+                        <div class="form-field">
+                            <label>Intervalo:</label>
+                            <select 
+                                [(ngModel)]="dia.intervalo_sesion"
+                                class="select-input-small"
+                            >
+                                <option *ngFor="let intervalo of opcionesIntervalo" [value]="intervalo">
+                                    {{ intervalo }} min
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dia-inactivo-msg" *ngIf="!dia.activo">
+                    <span>Día no laborable</span>
+                </div>
+            </div>
+        </div>
+
+        <button 
+            (click)="guardarHorarios()" 
+            class="btn-guardar"
+            [disabled]="loading || !authId"
+        >
+            {{ loading ? '⏳ Guardando...' : '💾 Guardar Configuración' }}
+        </button>
+    </div>
+
+    <!-- <app-usuario></app-usuario> 
     llamada al componente usuario para uso futuro -->
 </div>

@@ -1,0 +1,224 @@
+.empresa-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.user-info {
+  background: #e3f2fd;
+  border-left: 4px solid #2196F3;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.user-info p {
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+.mensaje {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  background: #d4edda;
+  border-left: 4px solid #28a745;
+  color: #155724;
+}
+
+.mensaje.error {
+  background: #f8d7da;
+  border-left: 4px solid #dc3545;
+  color: #721c24;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.horarios-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.horarios-form h2 {
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.dias-container {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.dia-card {
+  background: #fafafa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s;
+}
+
+.dia-card:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 2px 6px rgba(76, 175, 80, 0.1);
+}
+
+.dia-card.inactivo {
+  background: #f5f5f5;
+  border-color: #e0e0e0;
+  opacity: 0.7;
+}
+
+.dia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.dia-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox-activo {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.dia-nombre {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-copiar {
+  padding: 0.4rem 0.8rem;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-copiar:hover {
+  background: #1976D2;
+}
+
+.dia-content {
+  padding-top: 0.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.time-input-small,
+.select-input-small {
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  background: white;
+}
+
+.time-input-small:focus,
+.select-input-small:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.select-input-small {
+  cursor: pointer;
+}
+
+.dia-inactivo-msg {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 0.5rem;
+}
+
+.btn-guardar {
+  width: 100%;
+  padding: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.btn-guardar:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.btn-guardar:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-guardar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .empresa-container {
+    padding: 1rem;
+  }
+  
+  .horarios-form {
+    padding: 1rem;
+  }
+}
