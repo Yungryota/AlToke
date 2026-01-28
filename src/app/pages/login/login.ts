@@ -119,9 +119,15 @@ export class Login {
         });
 
         if (insertError) {
-          console.error('❌ Error al crear perfil:', insertError);
-          throw new Error('Error al crear el perfil del usuario');
+          // Si el perfil ya existe, continuar
+          if (insertError.code === '23505') {
+            console.warn('⚠️ Perfil ya existía, continuando login normalmente');
+          } else {
+            console.error('❌ Error al crear perfil:', insertError);
+            throw new Error('Error al crear el perfil del usuario');
+          }
         }
+
       } else {
         roleId = perfil.role_id;
       }
